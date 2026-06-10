@@ -42,7 +42,8 @@ cryptopulse/
 ├── api_client.py      # fetches live prices from the CoinGecko API
 ├── storage.py         # saves & queries price history in SQLite
 ├── analysis.py        # trend, moving-average & top-mover analysis (pandas)
-└── dashboard.py       # builds an interactive HTML dashboard (Plotly)
+├── dashboard.py       # builds an interactive HTML dashboard (Plotly)
+└── alerts.py          # evaluates price rules & sends email alerts (SMTP)
 ```
 
 Try the API client on its own (live data, no setup required):
@@ -69,6 +70,12 @@ Build the interactive dashboard (writes `reports/dashboard.html`):
 python -m cryptopulse.dashboard
 ```
 
+Test the alert rule engine with safe demo data (no email sent):
+
+```bash
+python -m cryptopulse.alerts
+```
+
 ## 🛣️ Build roadmap
 
 - [x] **Step 1** — Project foundation (structure, config, logging, tooling)
@@ -76,7 +83,7 @@ python -m cryptopulse.dashboard
 - [x] **Step 3** — SQLite storage layer
 - [x] **Step 4** — Market analysis with pandas
 - [x] **Step 5** — Interactive dashboard
-- [ ] Step 6 — Email alerts
+- [x] **Step 6** — Email alerts
 - [ ] Step 7 — Scheduler & CLI
 - [ ] Step 8 — Docs & demo assets
 
