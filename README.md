@@ -38,13 +38,20 @@ python -m cryptopulse run-once
 cryptopulse/
 ├── __init__.py
 ├── config.py          # loads settings & secrets from .env
-└── logging_setup.py   # console + rotating-file logging
+├── logging_setup.py   # console + rotating-file logging
+└── api_client.py      # fetches live prices from the CoinGecko API
+```
+
+Try the API client on its own (live data, no setup required):
+
+```bash
+python -m cryptopulse.api_client
 ```
 
 ## 🛣️ Build roadmap
 
 - [x] **Step 1** — Project foundation (structure, config, logging, tooling)
-- [ ] Step 2 — CoinGecko API client
+- [x] **Step 2** — CoinGecko API client
 - [ ] Step 3 — SQLite storage layer
 - [ ] Step 4 — Market analysis with pandas
 - [ ] Step 5 — Interactive dashboard
