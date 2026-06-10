@@ -39,7 +39,8 @@ cryptopulse/
 ├── __init__.py
 ├── config.py          # loads settings & secrets from .env
 ├── logging_setup.py   # console + rotating-file logging
-└── api_client.py      # fetches live prices from the CoinGecko API
+├── api_client.py      # fetches live prices from the CoinGecko API
+└── storage.py         # saves & queries price history in SQLite
 ```
 
 Try the API client on its own (live data, no setup required):
@@ -48,11 +49,17 @@ Try the API client on its own (live data, no setup required):
 python -m cryptopulse.api_client
 ```
 
+Fetch live prices and store a snapshot (run it twice to watch history grow):
+
+```bash
+python -m cryptopulse.storage
+```
+
 ## 🛣️ Build roadmap
 
 - [x] **Step 1** — Project foundation (structure, config, logging, tooling)
 - [x] **Step 2** — CoinGecko API client
-- [ ] Step 3 — SQLite storage layer
+- [x] **Step 3** — SQLite storage layer
 - [ ] Step 4 — Market analysis with pandas
 - [ ] Step 5 — Interactive dashboard
 - [ ] Step 6 — Email alerts
