@@ -28,8 +28,14 @@ pip install -r requirements.txt
 # 2. Create your config from the template
 cp .env.example .env        # then edit .env with your settings
 
-# 3. Run a single collection + dashboard cycle (added in later steps)
+# 3. Run a single collection + dashboard cycle
 python -m cryptopulse run-once
+
+# 4. Or run it continuously on a schedule (every 10 min by default)
+python -m cryptopulse run --interval 10
+
+# 5. Check what's been collected so far
+python -m cryptopulse status
 ```
 
 ## 🧱 Project structure
@@ -37,13 +43,15 @@ python -m cryptopulse run-once
 ```
 cryptopulse/
 ├── __init__.py
+├── __main__.py        # CLI entry point + scheduler (run-once / run / status)
 ├── config.py          # loads settings & secrets from .env
 ├── logging_setup.py   # console + rotating-file logging
 ├── api_client.py      # fetches live prices from the CoinGecko API
 ├── storage.py         # saves & queries price history in SQLite
 ├── analysis.py        # trend, moving-average & top-mover analysis (pandas)
 ├── dashboard.py       # builds an interactive HTML dashboard (Plotly)
-└── alerts.py          # evaluates price rules & sends email alerts (SMTP)
+├── alerts.py          # evaluates price rules & sends email alerts (SMTP)
+└── pipeline.py        # orchestrates one full fetch→store→analyze→alert cycle
 ```
 
 Try the API client on its own (live data, no setup required):
@@ -84,7 +92,7 @@ python -m cryptopulse.alerts
 - [x] **Step 4** — Market analysis with pandas
 - [x] **Step 5** — Interactive dashboard
 - [x] **Step 6** — Email alerts
-- [ ] Step 7 — Scheduler & CLI
+- [x] **Step 7** — Scheduler & CLI
 - [ ] Step 8 — Docs & demo assets
 
 ## 📝 License
