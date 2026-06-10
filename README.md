@@ -41,7 +41,8 @@ cryptopulse/
 ├── logging_setup.py   # console + rotating-file logging
 ├── api_client.py      # fetches live prices from the CoinGecko API
 ├── storage.py         # saves & queries price history in SQLite
-└── analysis.py        # trend, moving-average & top-mover analysis (pandas)
+├── analysis.py        # trend, moving-average & top-mover analysis (pandas)
+└── dashboard.py       # builds an interactive HTML dashboard (Plotly)
 ```
 
 Try the API client on its own (live data, no setup required):
@@ -62,13 +63,19 @@ Analyze the stored history (trends, moving averages, top movers):
 python -m cryptopulse.analysis
 ```
 
+Build the interactive dashboard (writes `reports/dashboard.html`):
+
+```bash
+python -m cryptopulse.dashboard
+```
+
 ## 🛣️ Build roadmap
 
 - [x] **Step 1** — Project foundation (structure, config, logging, tooling)
 - [x] **Step 2** — CoinGecko API client
 - [x] **Step 3** — SQLite storage layer
 - [x] **Step 4** — Market analysis with pandas
-- [ ] Step 5 — Interactive dashboard
+- [x] **Step 5** — Interactive dashboard
 - [ ] Step 6 — Email alerts
 - [ ] Step 7 — Scheduler & CLI
 - [ ] Step 8 — Docs & demo assets
