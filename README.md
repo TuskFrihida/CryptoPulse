@@ -84,6 +84,34 @@ Test the alert rule engine with safe demo data (no email sent):
 python -m cryptopulse.alerts
 ```
 
+## ⚙️ Configuration
+
+All settings live in a git-ignored `.env` file (copy `.env.example` to start):
+
+| Variable      | Description                                                        |
+|---------------|--------------------------------------------------------------------|
+| `COINS`       | Comma-separated CoinGecko coin IDs (e.g. `bitcoin,ethereum`).      |
+| `VS_CURRENCY` | Fiat currency to price in (`usd`, `eur`, ...).                     |
+| `SMTP_*`      | SMTP host/port/user/password for email alerts (optional).          |
+| `ALERT_TO`    | Where alert emails are sent.                                       |
+| `ALERT_RULES` | Rules as `coin:operator:price`, e.g. `bitcoin:above:80000`.        |
+
+If the SMTP fields are blank, email is simply disabled — everything else runs.
+
+## 🏗️ How it works
+
+CryptoPulse is a one-directional pipeline of small, single-responsibility
+modules. Each stage hands a clean, typed object to the next:
+
+```
+CoinGecko API → fetch → store → analyze → ┬→ dashboard (HTML)
+                                          └→ alerts (email)
+```
+
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full diagram, module
+responsibilities, and design principles, and [docs/DEMO.md](docs/DEMO.md) for a
+step-by-step recording guide.
+
 ## 🛣️ Build roadmap
 
 - [x] **Step 1** — Project foundation (structure, config, logging, tooling)
@@ -93,8 +121,8 @@ python -m cryptopulse.alerts
 - [x] **Step 5** — Interactive dashboard
 - [x] **Step 6** — Email alerts
 - [x] **Step 7** — Scheduler & CLI
-- [ ] Step 8 — Docs & demo assets
+- [x] **Step 8** — Docs & demo assets
 
 ## 📝 License
 
-MIT
+This project is licensed under the [MIT License](LICENSE).
